@@ -1,0 +1,45 @@
+﻿@model IEnumerable<project5_voting.Models.Admin>
+
+@{
+    ViewBag.Title = "showAdmin";
+}
+
+<h2>Show Admins</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temporaryPassword)
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.temporaryPassword)
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Add New Admin", "addAdmain", null, new { @class = "btn btn-success" })
+</p>

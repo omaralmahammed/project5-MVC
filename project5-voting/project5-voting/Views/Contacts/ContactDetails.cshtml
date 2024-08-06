@@ -1,0 +1,75 @@
+﻿@model project5_voting.Models.Contact
+
+@{
+    ViewBag.Title = "ContactDetails";
+}
+
+<h2>Contact Details</h2>
+
+
+<main>
+
+    <div class="row">
+        <div class="col">
+            <label>Name</label>
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        <div class="col">
+            <label>Email</label>
+            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Date</label>
+            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        <div class="col">
+            <label>Time</label>
+            @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
+    <br />
+
+    @{
+        if (Model.status == 0)
+        {
+            <div class="row">
+                <div class="col">
+                    <label>Status</label>
+                    <p class="text-danger">Incomplete</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    <label>Status</label>
+                    <p class="text-success">Completed</p>
+                    @Html.ActionLink("Show Response", "ShowResponse", new { id = Model.id }, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        }
+    }
+
+    <div class="row">
+        <label>Subject</label>
+        @Html.EditorFor(model => model.subject, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+    </div>
+
+    <div class="row">
+        <label>Messege</label>
+        @Html.TextAreaFor(model => model.message, new { @class = "form-control", @id = "floatingTextarea", @style = "height: 100px;", @readonly = "readonly" })
+    </div>
+
+    <div>
+        @Html.ActionLink("Back", "AdminContact", new { id = Model.id }, new { @class = "btn btn-secondary" })
+    </div>
+</main>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

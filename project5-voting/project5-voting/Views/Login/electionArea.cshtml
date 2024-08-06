@@ -1,0 +1,72 @@
+﻿@model IEnumerable<project5_voting.Models.electionArea>
+@{
+    ViewBag.Title = "electionArea";
+}
+
+<h2>electionArea</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@{
+
+    var electionArea = Request.Cookies["electionArea"];
+    var userElectionArea = electionArea.Value; // Extract NationalID from cookie value
+
+
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@foreach (var item in Model)
+{
+    if (item.areaName == userElectionArea)
+    {
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@item.areaName</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                @if (item.areaName == "area1" || item.areaName == "area2" ||  item.areaName == "area3")
+        {
+
+        @Html.ActionLink("localORparty", "localORparty", new { @class = "btn btn-primary" })
+
+    }
+else
+    {
+        <button id="basicAlert" class="btn btn-primary">Show Alert</button>
+
+    }
+
+            </div>
+        </div>
+    }
+
+
+}
+<hr />
+<hr />
+<hr />
+@foreach (var item in Model)
+{
+    if (item.areaName != userElectionArea)
+    {
+        <div class="card">
+            <div class="card-body">
+                @item.areaName
+            </div>
+        </div>
+    }
+
+
+}
+<script>
+    document.getElementById('basicAlert').onclick = function () {
+        Swal.fire({
+            title: "Coming soon",
+            text: "",
+            icon: "info"
+        });
+    };
+</script>
+

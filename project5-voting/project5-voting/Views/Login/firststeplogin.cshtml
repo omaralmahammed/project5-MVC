@@ -1,0 +1,62 @@
+﻿@model project5_voting.Models.USER
+
+@{
+    ViewBag.Title = "firststeplogin";
+}
+
+<br>
+<br>
+<br>
+<br>
+
+<main aria-labelledby="title">
+    <div style="text-align-last: center;">
+        <h2 id="title">@ViewBag.Title</h2>
+    </div>
+    <br>
+    <br>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="container border border-dark p-4" style="background-color:white">
+                <!-- Added container here -->
+                <section id="loginForm">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4 class="mb-4">Use a local account to log in.</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.email, new { @class = "col-md-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.email, new { @class = "form-control border border-dark" })
+                                @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.NationalID, new { @class = "col-md-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.NationalID, new { @class = "form-control border border-dark" })
+                                @Html.ValidationMessageFor(m => m.NationalID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.password, new { @class = "col-md-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.password, new { @class = "form-control border border-dark" })
+                                @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="offset-md-2 col-md-10">
+                                <input type="submit" value="Log in" class="btn btn-outline-dark" />
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div> <!-- End of added container -->
+        </div>
+    </div>
+</main>
+

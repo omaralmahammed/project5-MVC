@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Publishs";
+}
+
+<h2>Publishs</h2>
+@foreach (var ad in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="~/Images/@ad.URL" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@ad.data</h5>
+            <p class="card-title">@ad.partyName</p>
+            <p class="card-text">@ad.description</p>
+            <p class="card-text"><small class="text-muted">@ad.electionArea</small></p>
+            <p class="card-text"><strong>Status:</strong> @ad.status</p>
+        </div>
+    </div>
+}

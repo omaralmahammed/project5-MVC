@@ -1,0 +1,81 @@
+﻿@model IEnumerable<project5_voting.Models.Debate>
+
+@{
+    ViewBag.Title = "ShowDebates";
+}
+
+<h2>ShowDebates</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            رقم الطلب
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.electionArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstCandidate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.secondCandidate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.electionArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstCandidate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.secondCandidate)
+            </td>4
+            <td>
+                @Html.DisplayFor(modelItem => item.subject)
+            </td>
+            @if (item.status == null)
+            {
+                <td>
+                    Pennding
+                </td>
+            }
+            else if (item.status == 0)
+            {
+
+
+                <td>
+                    Rejected
+                </td>
+            }
+            else
+            {
+                <td>
+                    Approved 
+                </td>
+            }
+            <td>
+                @Html.ActionLink("Show", "Show", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

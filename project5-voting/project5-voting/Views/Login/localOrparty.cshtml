@@ -1,0 +1,84 @@
+﻿
+
+@model IEnumerable<project5_voting.Models.USER>
+
+@{
+    ViewBag.Title = "localOrparty";
+}
+
+<h2>localOrparty</h2>
+@using (Html.BeginForm())
+{
+
+
+    var logedInUser = Request.Cookies["logedInUser"];
+
+
+    foreach (var item in Model)
+    {
+        if (item.NationalID == logedInUser.Value)
+        {
+            var ifVoted = item;
+
+
+
+
+
+
+
+            <h2>localORparty</h2>
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    @if (ifVoted.localYouth == 1 || ifVoted.whileLocalVote == 1)
+                    {
+
+                        <button id="warningButton">Show Warning</button>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("localVoting", "localVoting", new { @class = "btn btn-primary" })
+
+                    }
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    @if (ifVoted.partyVote == 1 || ifVoted.whilePartyVote == 1)
+                    {
+                        <button id="warningButton">Show Warning</button>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("partyVoting", "partyVoting", new { @class = "btn btn-primary" })
+                    }
+                </div>
+            </div>}
+    }
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="deleteButton" onclick="myForm" name="hi">vote</button>
+    </div>
+
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script>
+    document.getElementById('warningButton').onclick = function () {
+        Swal.fire({
+            title: 'Warning!',
+            text: 'you already Voted',
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Okay'
+        });
+    };
+
+</script>
+
+

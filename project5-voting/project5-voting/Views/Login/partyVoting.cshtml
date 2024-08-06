@@ -1,0 +1,35 @@
+﻿
+
+@model IEnumerable<project5_voting.Models.partyList>
+
+@{
+    ViewBag.Title = "Party Voting";
+}
+
+<h2>Party Voting</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        @foreach (var party in Model)
+        {
+            if (party.status == "1")
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@party.partyName</h5>
+                            <p class="card-text">Counter: @party.counter</p>
+                            <div class="form-check">
+                                <input type="radio" id="party@party.id" name="selectedPartyId" value="@party.id" class="form-check-input" />
+                                <label class="form-check-label" for="party@party.id">Select</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+
